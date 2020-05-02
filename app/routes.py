@@ -1,10 +1,7 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'cb7a5bab1e32eb33a9fb58c3294107b4'
-
+from flask import render_template, url_for, flash, redirect
+from app import app
+from app.forms import RegistrationForm, LoginForm
+from app.models import User, Post
 
 
 
@@ -28,14 +25,18 @@ def register():
   form = RegistrationForm()
   if form.validate_on_submit():
     flash(f'Account created for { form.username.data}!', 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
   return render_template('register.html', title='Register', form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
   form = LoginForm()
+  if form.validate_on_submit():
+    if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+      flash(f'You have been logged in', 'success')
+      return redirect(url_for('index'))
+    else:
+      flash('Login Unsuccessful. Please check email and password', 'success')
+
   return render_template('login.html', title='Login', form=form)
 
-
-if __name__ == '__main__':
-  app.run(debug=True)
