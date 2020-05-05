@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
   password = db.Column(db.String(60), nullable =False)
   pitch = db.relationship('Pitch', backref='author', lazy='dynamic')
   comments = db.relationship('Comment', backref='author', lazy='dynamic')
-  # upvotes = db.relationship('Upvote', backref = 'author', lazy='dynamic')
+  upvotes = db.relationship('Upvote', backref = 'author', lazy='dynamic')
 
   def get_reset_token(self, expires_sec=1800):
     s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -69,32 +69,30 @@ class Upvote(db.Model):
 
   __tablename__ = 'upvotes'
 
-  id = db.Column(db.Integer,primary_key=True)
-  upvote = db.Column(db.Integer,default=1)
-  
-#   pitch_id = db.Column(db.Integer,db.ForeignKey('post.id'))
-#   user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+  id = db.Column(db.Integer, primary_key=True)
+  upvote = db.Column(db.Integer, default=0)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+  pitch_id = db.Column(db.Integer, db.ForeignKey('post.id'))
 
-#   def save_upvotes(self):
-#     db.session.add(self)
-#     db.session.commit()
+  def save_upvotes(self):
+    db.session.add(self)
+    db.session.commit()
 
+  def add_upvotes(cls,id):
+    upvote_pitch = Upvote(user = current_user, pitch_id=id)
+    upvote_pitch.save_upvotes()
 
-#   def add_upvotes(cls,id):
-#     upvote_pitch = Upvote(user = current_user, pitch_id=id)
-#     upvote_pitch.save_upvotes()
+    
+  @classmethod
+  def get_upvotes(cls,id):
+    upvote = Upvote.query.filter_by(pitch_id=id).all()
+    return upvote
 
-  
-#   @classmethod
-#   def get_upvotes(cls,id):
-#     upvote = Upvote.query.filter_by(pitch_id=id).all()
-#     return upvote
+  @classmethod
+  def get_all_upvotes(cls,pitch_id):
+    upvotes = Upvote.query.order_by('id').all()
+    return upvotes
 
-#   @classmethod
-#   def get_all_upvotes(cls,pitch_id):
-#     upvotes = Upvote.query.order_by('id').all()
-#     return upvotes
-
-#   def __repr__(self):
-#     return f'{self.user_id}:{self.pitch_id}'
+  def __repr__(self):
+    return f'{self.user_id}:{self.pitch_id}'
 
