@@ -59,10 +59,8 @@ def update_pitch(pitch_id):
 @login_required
 def delete_pitch(pitch_id):
   pitch = Pitch.query.get_or_404(pitch_id)
-  all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
   if pitch.author != current_user:
     abort(403)
-  db.session.delete(all_comments)
   db.session.delete(pitch)
   db.session.commit()
   flash('Your pitch has been deleted', 'success')
@@ -95,20 +93,6 @@ def downvote(pitch_id):
     new_downvote.save_downvotes()
     return redirect(url_for('main.index'))
 
-# @pitches.route('/category/<string:category>')
-# def user_account(cat_name):
-#   pitches = Pitch.query.filter_by(category=cat_name).order_by(Pitch.pub_date.desc())
-#   return render_template('categories.html', pitches=pitches)
-
-# @pitches.route('/pitch/category/')
-# def category():
-#   pickuplines = Pitch.query.filter_by(category='pickuplines')
-#   elevatorpitch = Pitch.query.filter_by(category = 'elevatorpitch')
-#   productpitch = Pitch.query.filter_by(category = 'productpitch')
-#   randompitch = Pitch.query.filter_by(category = 'randompitch')
-
-#   return render_template('categories.html', pickuplines=pickuplines, elevatorpitch=elevatorpitch, productpitch = productpitch, randompitch=randompitch)
-
 @pitches.route('/categories/<string:cat_name>')
 def category(cat_name):
     '''
@@ -116,7 +100,7 @@ def category(cat_name):
     '''
     category = Pitch.get_pitches(cat_name)
 
-    return render_template('categories.html', category = category, pitch=pitch)
+    return render_template('categories.html', category = category)
 
 
 

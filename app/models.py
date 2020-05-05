@@ -68,7 +68,7 @@ class Comment (db.Model):
   content = db.Column(db.Text, nullable=False)
   date_posted = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id') ,  nullable=False)
+  pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id', ondelete='CASCADE') ,  nullable=True)
 
   def __repr__(self):
     return(f"User('{self.content}', '{self.date_posted}')")
