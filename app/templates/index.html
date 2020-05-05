@@ -12,9 +12,9 @@
             <h2><a class="article-title" href="{{ url_for('pitches.new_comment', pitch_id=pitch.id)}}">{{ pitch.title }}</a></h2>
             <p class="article-content">{{ pitch.content }}</p>
             <div>
-              <button><i class="fa fa-comments"></i></button>
-              <button><i class="fa fa-thumbs-up"></i></button>
-              <button><i class="fa fa-thumbs-down"></i></button>
+              <a href="{{url_for('pitches.new_comment', pitch_id = pitch.id)}}"><button><i class="fa fa-comments"></i></button></a>
+              <a href="{{url_for('pitches.upvote', pitch_id = pitch.id)}}"><button><i class="fa fa-thumbs-up">{{ pitch.upvotes.count() }}</i> </button></a>
+              <a href="{{url_for('pitches.downvote', pitch_id = pitch.id)}}"><button><i class="fa fa-thumbs-down">{{ pitch.downvotes.count() }}</i></button></a>
             </div>
           </div>
         </article>
