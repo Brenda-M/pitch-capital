@@ -1,11 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from app import db, bcrypt
-from app.models import User, Post
+from app.models import User, Pitch
 from app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from app.users.utlis import save_profile_picture, send_reset_email
-
-
 
 users = Blueprint('users', __name__)
 
@@ -91,3 +89,20 @@ def reset_token(token):
     flash('Your password has been updated! You can now login to your account', 'success')
     return redirect(url_for('users.login'))
   return render_template('reset_token.html', title='Reset Password', form=form)
+
+  
+
+# @users.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
+# @login_required
+# def upvote(pitch_id):
+#   pitch = Pitch.query.get(pitch_id)
+#   user = current_user
+#   pitch_upvotes = Upvote.query.filter_by(pitch_id= post_id)
+  
+#   if Upvote.query.filter(Upvote.user_id==user.id, Upvote.pitch_id==pitch_id).first():
+#       return  redirect(url_for('main.index'))
+
+
+#   new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
+#   new_upvote.save_upvotes()
+#   return redirect(url_for('main.index'))

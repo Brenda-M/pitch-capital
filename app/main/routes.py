@@ -1,6 +1,6 @@
 
 from flask import Blueprint, render_template 
-from app.models import Post
+from app.models import Pitch
 
 main = Blueprint('main', __name__)
 
@@ -9,8 +9,8 @@ main = Blueprint('main', __name__)
 def index():
 
   title = "Welcome to PitchCapital"
-  posts = Post.query.all()
-  return render_template('index.html', title=title, posts=posts)
+  pitches = Pitch.query.all()
+  return render_template('index.html', title=title, pitches=pitches)
 
 @main.route('/about')
 def about():
