@@ -12,7 +12,7 @@ pitches = Blueprint('pitches', __name__)
 def new_pitch():
   form = PitchForm()
   if form.validate_on_submit():
-    pitch = Pitch(title=form.title.data, content=form.content.data, author=current_user)
+    pitch = Pitch(title=form.title.data, content=form.content.data, category=form.category.data, author=current_user)
     db.session.add(pitch)
     db.session.commit()
     flash('Your pitch has been posted!', 'success')
@@ -95,7 +95,7 @@ def downvote(pitch_id):
     new_downvote.save_downvotes()
     return redirect(url_for('main.index'))
 
-@pitches.route('/pitch/category')
+@pitches.route('/pitch/category/')
 def category():
   pickuplines = Pitch.query.filter_by(category='pickuplines')
   elevatorpitch = Pitch.query.filter_by(category = 'elevatorpitch')
