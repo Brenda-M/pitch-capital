@@ -53,6 +53,11 @@ class Pitch(db.Model):
   comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
   upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')
   downvotes = db.relationship('Downvote', backref = 'pitch', lazy = 'dynamic')
+
+  @classmethod
+  def get_pitches(cls,cat_name):
+    pitch = Pitch.query.filter_by(category=cat_name).all()
+    return pitch
     
   def __repr__(self):
     return(f"User('{self.title}', '{self.pub_date}')")

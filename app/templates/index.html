@@ -6,7 +6,7 @@
           <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/' + pitch.author.image_file)}}">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{{ url_for('users.user_account', username=pitch.author.username)}}">{{ pitch.author.username }}</a>
+              <a class="mr-2" href="#">{{ pitch.author.username }}</a>
               <small class="text-muted">{{ pitch.pub_date.strftime('%Y/%m/%d')}}</small><span><p><i class="fa fa-tags"></i>{{ pitch.category }}</p></span>
             </div>
             <h2><a class="article-title" href="{{ url_for('pitches.new_comment', pitch_id=pitch.id)}}">{{ pitch.title }}</a></h2>

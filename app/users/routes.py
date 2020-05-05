@@ -74,7 +74,7 @@ def reset_token(token):
     return redirect(url_for('users.login'))
   return render_template('reset_token.html', title='Reset Password', form=form)
 
-@users.route('/user/<string:username>', methods=['GET', 'POST'])
+@users.route('/user/<string:username>')
 @login_required
 def user_account(username):
   user = User.query.filter_by(username=username).first_or_404()
