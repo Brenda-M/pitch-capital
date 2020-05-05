@@ -48,8 +48,8 @@ class Pitch(db.Model):
   pub_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
   content = db.Column(db.Text, nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-  comments = db.relationship('Comment', backref='pitch',lazy='dynamic')
-  # upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')
+  comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
+  upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')
     
   def __repr__(self):
     return(f"User('{self.title}', '{self.pub_date}')")
@@ -60,16 +60,18 @@ class Comment (db.Model):
   content = db.Column(db.Text, nullable=False)
   date_posted = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'), nullable=False)
+  pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id') ,  nullable=False)
 
   def __repr__(self):
     return(f"User('{self.content}', '{self.date_posted}')")
 
-# class Upvote(db.Model):
-#   __tablename__ = 'upvotes'
+class Upvote(db.Model):
 
-#   id = db.Column(db.Integer,primary_key=True)
-#   upvote = db.Column(db.Integer,default=1)
+  __tablename__ = 'upvotes'
+
+  id = db.Column(db.Integer,primary_key=True)
+  upvote = db.Column(db.Integer,default=1)
+  
 #   pitch_id = db.Column(db.Integer,db.ForeignKey('post.id'))
 #   user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
 
