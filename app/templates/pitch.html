@@ -43,11 +43,9 @@
       </form>
     </div>
   <div>
-
   {% if comments %}  
   {% for comment in comments %}
     <article class="media content-section">
-
       <div class="media-body">
         <div class="article-metadata">
           <a class="mr-2" href="#">{{ comment.author.username }}</a>
@@ -62,6 +60,8 @@
       </div>
     </article>
   {% endfor %}
+  {% else %}
+    <p> This post has no comments yet</p>
   {%endif%}
   <!-- Modal -->
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, abort, request
 from flask_login import current_user, login_required
 from app import db
-from app.models import Pitch, Comment
+from app.models import Pitch, Comment, Upvote, Downvote
 from app.pitches.forms import PitchForm,  CommentForm
 
 
@@ -22,7 +22,6 @@ def new_pitch():
 @pitches.route('/pitch/<int:pitch_id>', methods=['GET', 'POST'])
 @login_required
 def new_comment(pitch_id):
-
   pitch = Pitch.query.get_or_404(pitch_id)
   form =  CommentForm()
 
@@ -60,12 +59,50 @@ def update_pitch(pitch_id):
 @login_required
 def delete_pitch(pitch_id):
   pitch = Pitch.query.get_or_404(pitch_id)
+  all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
   if pitch.author != current_user:
     abort(403)
+  db.session.delete(all_comments)
   db.session.delete(pitch)
   db.session.commit()
   flash('Your pitch has been deleted', 'success')
   return redirect(url_for('main.index'))
+
+
+@pitches.route('/pitch/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
+@login_required
+def upvote(pitch_id):
+    pitch = Pitch.query.get(pitch_id)
+    user = current_user
+    pitch_upvotes = Upvote.query.filter_by(pitch_id= pitch_id)
+    if Upvote.query.filter(Upvote.user_id==user.id, Upvote.pitch_id==pitch_id).first():
+        return  redirect(url_for('main.index'))
+
+    new_upvote = Upvote(pitch_id=pitch_id, author=current_user)
+    new_upvote.save_upvotes()
+    return redirect(url_for('main.index'))
+
+@pitches.route('/pitch/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
+@login_required
+def downvote(pitch_id):
+    pitch = Pitch.query.get(pitch_id)
+    user = current_user
+    pitch_upvotes = Downvote.query.filter_by(pitch_id= pitch_id)
+    if Downvote.query.filter(Downvote.user_id==user.id, Downvote.pitch_id==pitch_id).first():
+      return  redirect(url_for('main.index'))
+
+    new_downvote = Downvote(pitch_id=pitch_id, author=current_user)
+    new_downvote.save_downvotes()
+    return redirect(url_for('main.index'))
+
+@pitches.route('/pitch/category')
+def category():
+  pickuplines = Pitch.query.filter_by(category='pickuplines')
+  elevatorpitch = Pitch.query.filter_by(category = 'elevatorpitch')
+  productpitch = Pitch.query.filter_by(category = 'productpitch')
+  randompitch = Pitch.query.filter_by(category = 'randompitch')
+
+  return render_template('categories.html', pickuplines=pickuplines, elevatorpitch=elevatorpitch, productpitch = productpitch, randompitch=randompitch)
 
 
 

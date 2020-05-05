@@ -90,19 +90,10 @@ def reset_token(token):
     return redirect(url_for('users.login'))
   return render_template('reset_token.html', title='Reset Password', form=form)
 
-  
-
-# @users.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
-# @login_required
-# def upvote(pitch_id):
-#   pitch = Pitch.query.get(pitch_id)
-#   user = current_user
-#   pitch_upvotes = Upvote.query.filter_by(pitch_id= post_id)
-  
-#   if Upvote.query.filter(Upvote.user_id==user.id, Upvote.pitch_id==pitch_id).first():
-#       return  redirect(url_for('main.index'))
-
-
-#   new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
-#   new_upvote.save_upvotes()
-#   return redirect(url_for('main.index'))
+@users.route('/user/<username>')
+@login_required
+def user_account(username):
+  form = UpdateAccountForm()
+  user = User.query.filter_by(username=username).first_or_404()
+  pitches = Pitch.query.filter_by(author=user).order_by(Pitch.pub_date.desc())
+  return render_template('account.html', pitches=pitches, user=user, form=form)

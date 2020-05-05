@@ -48,6 +48,7 @@ class Pitch(db.Model):
   title = db.Column(db.String(200), nullable = False)
   pub_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
   content = db.Column(db.Text, nullable=False)
+  category = db.Column(db.String(255), nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
   upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')

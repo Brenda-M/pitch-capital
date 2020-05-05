@@ -54,7 +54,7 @@
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
           <a class="dropdown-item" href="{{ url_for('pitches.new_pitch') }}">New Pitch</a>
-          <a class="dropdown-item" href=" {{ url_for('users.account') }}">Account</a>
+          <a class="dropdown-item" href=" {{ url_for('users.user_account', username=user) }}">Account</a>
           <a class="dropdown-item" href="{{ url_for('users.logout') }}">Logout</a>
         </div>
       </li>
