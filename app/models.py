@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
   pitch = db.relationship('Pitch', backref='author', lazy='dynamic')
   comments = db.relationship('Comment', backref='author', lazy='dynamic')
   upvotes = db.relationship('Upvote', backref = 'author', lazy='dynamic')
+  downvotes = db.relationship('Downvote', backref = 'author', lazy='dynamic')
 
   def get_reset_token(self, expires_sec=1800):
     s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -50,6 +51,7 @@ class Pitch(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
   upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')
+  downvotes = db.relationship('Downvote', backref = 'pitch', lazy = 'dynamic')
     
   def __repr__(self):
     return(f"User('{self.title}', '{self.pub_date}')")
