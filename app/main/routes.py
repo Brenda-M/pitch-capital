@@ -10,12 +10,6 @@ def index():
 
   title = "Welcome to PitchCapital"
   pitches = Pitch.query.all()
+
   return render_template('index.html', title=title, pitches=pitches)
-
-@main.route('/about')
-def about():
-
-  title = "About PitchCapital"
-
-  return render_template('about.html', title=title)
 

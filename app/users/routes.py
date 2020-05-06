@@ -75,11 +75,11 @@ def reset_token(token):
   return render_template('reset_token.html', title='Reset Password', form=form)
 
 @users.route('/user/<string:username>')
-@login_required
 def user_account(username):
   user = User.query.filter_by(username=username).first_or_404()
   pitches = Pitch.query.filter_by(author=user).order_by(Pitch.pub_date.desc())
-  return render_template('profile.html', pitches=pitches, user=user)
+  image_file= url_for('static', filename=f'images/{user.image_file}')
+  return render_template('profile.html', pitches=pitches, user=user, image_file=image_file,)
 
 @users.route('/update_account', methods=['GET', 'POST'])
 @login_required

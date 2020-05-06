@@ -100,7 +100,7 @@ def category(cat_name):
     '''
     category = Pitch.get_pitches(cat_name)
 
-    return render_template('categories.html', category = category)
+    return render_template('categories.html', category = category, title=cat_name)
 
 
 

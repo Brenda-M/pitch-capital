@@ -1,24 +1,29 @@
 
+{% import 'macros.html' as macro%}
+
 {% extends "layout.html" %}
 {% block content %}
-    {% for pitch in pitches %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/' + pitch.author.image_file)}}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ pitch.author.username }}</a>
-              <small class="text-muted">{{ pitch.pub_date.strftime('%Y/%m/%d')}}</small><span><p><i class="fa fa-tags"></i>{{ pitch.category }}</p></span>
-            </div>
-            <h2><a class="article-title" href="{{ url_for('pitches.new_comment', pitch_id=pitch.id)}}">{{ pitch.title }}</a></h2>
-            <p class="article-content">{{ pitch.content }}</p>
-            <div>
-              <a href="{{url_for('pitches.new_comment', pitch_id = pitch.id)}}"><button><i class="fa fa-comments"></i></button></a>
-              <a href="{{url_for('pitches.upvote', pitch_id = pitch.id)}}"><button><i class="fa fa-thumbs-up">{{ pitch.upvotes.count() }}</i> </button></a>
-              <a href="{{url_for('pitches.downvote', pitch_id = pitch.id)}}"><button><i class="fa fa-thumbs-down">{{ pitch.downvotes.count() }}</i></button></a>
-            </div>
-          </div>
-        </article>
-    {% endfor %}
+  <div class="container all-pitches">
+    <div class="row">
+      <div class="col-md-9">
+        {{ macro.displayPitchList(pitches) }}
+      </div>
+      
+        <div class="category-section col-md-3">
+          <div class="card">
+          <h3 class="article-title text-center mt-3"><b>All Categories</b></h3>
+            <ul class="list-unstyled">     
+              <li class="list-group-item"><a href="/categories/productpitch">Product Pitch</a></li>
+              <li class="list-group-item"><a href="/categories/elevatorpitch">Elevator Pitch</a></li>
+              <li class="list-group-item"> <a href="/categories/pickuplines">Pickup Line</a></li>
+              <li class="list-group-item"><a href="/categories/randompitch">Random Pitch</a></li>
+            </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 {% endblock content %}
+
 
 
