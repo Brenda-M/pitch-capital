@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+body{
+  background-color: #E9FFF9;
+}
+
 .page-footer{
   background-color: black;
   font-weight: bold;
@@ -117,3 +121,9 @@ nav{
   font-family: 'Noto Serif', serif;
 }
 
+.home-body{
+  background-image: url('../static/bg-images//bg-2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
+}
