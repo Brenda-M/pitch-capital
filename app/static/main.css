@@ -5,6 +5,7 @@
 
 body{
   background-color: #E9FFF9;
+  min-height: 1000px;
 }
 
 .page-footer{
@@ -127,3 +128,4 @@ nav{
   background-size: cover;
   opacity: 0.9;
 }
+

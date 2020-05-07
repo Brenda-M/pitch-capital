@@ -34,7 +34,7 @@ def new_comment(pitch_id):
     
   all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
 
-  return render_template('pitch.html', form=form, legend='Comment', pitch=pitch, comments=all_comments, title=pitch.title)
+  return render_template('pitch.html', form=form, legend='Leave a Comment', pitch=pitch, comments=all_comments, title=pitch.title)
 
 
 @pitches.route('/pitch/<int:pitch_id>/update', methods=['GET', 'POST'])
