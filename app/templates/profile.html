@@ -11,7 +11,9 @@
           <img src="{{ image_file }}" alt="" class="rounded-circle account-img" width=150, height=150>
           <div class="media-body">
             <h2 class="account-heading"> {{ user.username }}</h2>
+            {% if current_user.is_authenticated %}
             <p class="text-secondary">  {{ user.email }}</p>
+            {% endif %}
           </div>
         </div>   
       </div>
