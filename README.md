@@ -55,6 +55,7 @@ As a user, you will be able to:
 ## Link
 
 The live deployed web app can be found <a href="https://pitch-capital.herokuapp.com/">here</a>
+<a href="https://pitch-capital.herokuapp.com/" target="_blank">Visit W3Schools</a>
 
 ## Contact Information
 
