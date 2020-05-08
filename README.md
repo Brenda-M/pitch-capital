@@ -10,21 +10,18 @@ Pitch Application
 
 This is a python-based web application that allows users to submit ideally one-minute pitches as well as provide feedback on other people's posts. 
 
-## Screenshot
-
-
 ## User Stories
 
 As a user, you will be able to:
-
-  1. View pitches posted by other users.
-  2. Sign up to the account
-  3. Like and dislike pitches. 
-  4. Submit feedback or comment on other people's pitches.
-  5. Submit a pitch in any category
-  6. View a users pitches by their profile.
-  7. A signed user can delete and update their pitches.
-
+  <ul>
+  <li>View pitches posted by other users.</li>
+  <li>Sign up to the account</li>
+  <li>Like and dislike pitches. </li>
+  <li>Submit feedback or comment on other people's pitches.</li>
+  <li>Submit a pitch in any category</li>
+  <li>View a users pitches by their profile.</li>
+  <li>A signed user can delete and update their pitches.</li>
+  </ul>
 
 ## Technologies Used
 
