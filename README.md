@@ -4,11 +4,13 @@ Pitch Application
 
 ## Author Information
 
-Muthoni Njuguna
+<a href="https://github.com/Brenda-M">Muthoni Njuguna</a>
 
 ## Description
 
 This is a python-based web application that allows users to submit ideally one-minute pitches as well as provide feedback on other people's posts. 
+
+## Screenshot
 
 
 ## User Stories
@@ -50,7 +52,7 @@ As a user, you will be able to:
 3. Pip3 install -r requirements.txt 
 4. Add export SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://{User Name}:{password}@localhost/{database name} to the start.sh file export the configuration.
 5. Also,create a secret key and add it to start.sh
-6. Run $ ./start.sh on your terminal to start your local server and view the application on your browser.
+6. Run $./start.sh `<$./start.sh>`on your terminal to start your local server and view the application on your browser.
 
 ## Link
 
