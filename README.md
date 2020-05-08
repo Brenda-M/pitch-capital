@@ -26,11 +26,12 @@ As a user, you will be able to:
 
 ## Technologies Used
 
-  - Python
-  - Flask 
-  - HTML, CSS and Bootstrap
-  - JavaScript
-  - Git
+<ul>
+<li>Python</li>
+<li>Flask</li>
+<li>HTML, CSS and Bootstrap</li>
+<li>Javascript</li>
+</ul>
 
 ## BBD
 
