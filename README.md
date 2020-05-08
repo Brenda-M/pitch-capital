@@ -52,6 +52,10 @@ As a user, you will be able to:
 5. Also,create a secret key and add it to start.sh
 6. Run $ ./start.sh on your terminal to start your local server and view the application on your browser.
 
+## Link
+
+The live deployed web app can be found <a href="https://pitch-capital.herokuapp.com/">here</a>
+
 ## Contact Information
 
 In case of any feedback, you can reach me through: -brendanjuguna1@gmail.com
