@@ -49,10 +49,10 @@ As a user, you will be able to:
 
 1. Clone the application by running git clone https://github.com/Brenda-M/pitch-capital.git on the teminal.
 2. Create a virtual environment.
-3. Pip3 install -r requirements.txt 
-4. Add export SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://{User Name}:{password}@localhost/{database name} to the start.sh file export the configuration.
+3. Run `Pip3 install -r requirements.txt` on your terminal.
+4. Add `export SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://{User Name}:{password}@localhost/{database name}` to the start.sh file export the configuration.
 5. Also,create a secret key and add it to start.sh
-6. Run $./start.sh `<$./start.sh>`on your terminal to start your local server and view the application on your browser.
+6. Run `$./start.sh`on your terminal to start your local server and view the application on your browser.
 
 ## Link
 
